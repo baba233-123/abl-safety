@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ABL Safety Posters</title>
+<meta name="description" content="Daily safety posters, toolbox talks and training sessions for Accra Brewery.">
+<meta name="theme-color" content="#141613">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ABL Safety">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+@font-face{font-family:"Barlow Condensed";font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:700;font-display:swap;src:url(fonts/barlow-condensed-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-display:swap;src:url(fonts/barlow-condensed-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-style:italic;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
+/* Layout: one phone column — app bar, poster, actions, topic, edit, learning materials. Safety-signage palette. */
+:root{
+  --bg:#ECEEEA; --surface:#FFFFFF; --ink:#141613; --muted:#5B615A; --line:#D3D7D0;
+  --signal:#FFCD00; --signal-ink:#141613; --safe:#00843D; --warn:#B3261E; --bar:#141613; --bar-ink:#FFCD00;
+  --display:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#121411; --surface:#1C1F1B; --ink:#EEF0EA; --muted:#A3AA9F; --line:#30352E; --safe:#1FA35A; --warn:#F2867E; --bar:#0B0C0A; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+.appbar{position:sticky;top:0;z-index:5;background:var(--bar);color:var(--bar-ink);
+  padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));
+  display:flex;align-items:center;gap:12px}
+.appbar img{width:36px;height:36px;border-radius:8px;flex:none}
+.appbar h1{margin:0;font-family:var(--display);font-weight:800;font-size:24px;line-height:1;text-transform:uppercase;letter-spacing:.02em}
+.appbar p{margin:2px 0 0;font-size:13px;color:#C9CDC4}
+.appbar .sp{flex:1}
+.appbar button{background:transparent;border:1px solid #3A3F38;color:var(--bar-ink);min-height:36px;padding:6px 10px;font-size:13px}
+.wrap{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:16px;
+  padding:16px max(16px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+.poster-frame{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px;position:relative}
+.poster-frame img{display:block;width:100%;height:auto;aspect-ratio:1080/1350;border-radius:2px;background:#FFCD00}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--muted)}
+.meta b{color:var(--ink)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font:inherit;cursor:pointer;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  padding:12px 14px;font-weight:700;min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+button.primary{background:var(--safe);border-color:var(--safe);color:#fff}
+button:disabled{opacity:.55}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.panel h2{margin:0;font-family:var(--display);font-weight:800;font-size:22px;text-transform:uppercase;line-height:1.05}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+select,input{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:11px 12px}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.status{font-size:14px;margin:0;min-height:1.2em}
+.status.err{color:var(--warn)}
+details.panel>summary{cursor:pointer;list-style:none;font-family:var(--display);font-weight:800;font-size:22px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+details.panel>summary::-webkit-details-marker{display:none}
+details.panel>summary::after{content:"+";font-size:26px;color:var(--muted)}
+details.panel[open]>summary::after{content:"−"}
+.fields{display:flex;flex-direction:column;gap:10px}
+.deck-for{margin:0;padding:10px 12px;background:var(--bg);border-left:6px solid var(--signal);border-radius:4px;font-size:15px}
+button.deck{flex-direction:column;align-items:flex-start;text-align:left;gap:4px;padding:14px;border-width:2px}
+button.deck .t{font-family:var(--display);font-weight:800;font-size:21px;text-transform:uppercase;line-height:1}
+button.deck .s{font-weight:400;font-size:13px;color:var(--muted)}
+.install{background:var(--signal);color:var(--signal-ink);border-radius:6px;padding:12px 14px;font-size:14px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.install button{background:var(--ink);color:var(--signal);border-color:var(--ink);min-height:40px}
+footer{font-size:12px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="appbar">
+  <img src="icons/icon-192.png" alt="">
+  <div><h1>ABL Safety</h1><p id="todayLine">Daily safety message</p></div>
+  <span class="sp"></span>
+  <button id="todayBtn" type="button">Today</button>
+</div>
+
+<main class="wrap">
+  <div class="install" id="installBar" hidden>
+    <span id="installText">Install this app on your phone.</span>
+    <button id="installBtn" type="button">Install</button>
+  </div>
+
+  <section style="display:flex;flex-direction:column;gap:10px" aria-labelledby="posterHead">
+    <p class="eyebrow" id="posterHead">Today's poster</p>
+    <div class="poster-frame">
+      <img id="posterImg" alt="Safety poster">
+    </div>
+    <div class="row2">
+      <button id="prevBtn" type="button">‹ Previous</button>
+      <button id="nextBtn" type="button">Next ›</button>
+    </div>
+    <div class="meta" id="meta"></div>
+    <div class="row2">
+      <button class="primary" id="shareBtn" type="button">Share poster</button>
+      <button id="copyBtn" type="button">Copy text</button>
+    </div>
+    <p class="status" id="shareStatus" role="status"></p>
+  </section>
+
+  <section class="panel" aria-labelledby="topicHead">
+    <h2 id="topicHead">Choose a topic</h2>
+    <div>
+      <label for="topicSel">Topic</label>
+      <select id="topicSel"></select>
+      <p class="hint" id="topicHint" style="margin-top:6px"></p>
+    </div>
+  </section>
+
+  <details class="panel" id="editPanel">
+    <summary>Edit wording</summary>
+    <div class="fields">
+      <div><label for="fMain">Main message</label><input id="fMain" maxlength="70"></div>
+      <div><label for="fP1">Point 1</label><input id="fP1" maxlength="70"></div>
+      <div><label for="fP2">Point 2</label><input id="fP2" maxlength="70"></div>
+      <div><label for="fP3">Point 3</label><input id="fP3" maxlength="70"></div>
+      <div><label for="fRem">Reminder</label><input id="fRem" maxlength="110"></div>
+      <div><label for="fIcon">Picture</label>
+        <select id="fIcon">
+          <option value="shield">Shield (general)</option><option value="hardhat">Hard hat (PPE, height)</option>
+          <option value="beacon">Alarm beacon (gas, alarms)</option><option value="warning">Warning sign (hazards)</option>
+          <option value="clipboard">Clipboard (forms, risk)</option><option value="forklift">Forklift (vehicles)</option>
+          <option value="person">Person (people, lone work)</option>
+        </select></div>
+      <button id="resetBtn" type="button">Undo my changes</button>
+      <p class="hint">Changes show on the poster straight away and stay on this phone.</p>
+    </div>
+  </details>
+
+  <section class="panel" aria-labelledby="learnHead">
+    <h2 id="learnHead">Learning materials</h2>
+    <p class="deck-for" id="deckFor"></p>
+    <div class="row2">
+      <button class="deck" id="deckShort" type="button"><span class="t">Toolbox talk</span><span class="s">5 slides · about 5 minutes</span></button>
+      <button class="deck" id="deckFull" type="button"><span class="t">Training session</span><span class="s">About 12 slides · with a quiz</span></button>
+    </div>
+    <p class="status" id="deckStatus" role="status"></p>
+  </section>
+
+  <footer>Built from ABL's VPO Safety Pillar self-assessment (Aug 2026), the S.A.F.E. form, the Kinney method, the PPE standard AFR-VPOS.A09.001 and GTS.GEN.SFT.GSP.010. Works offline.</footer>
+</main>
+
+<canvas id="cv" width="1080" height="1350" hidden></canvas>
+<script src="content-a.js"></script>
+<script src="content-b.js"></script>
+<script src="lib/pptxgen.bundle.js"></script>
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const mod = (a, n) => ((a % n) + n) % n;
+const TOPICS = [...window.TOPICS_A, ...window.TOPICS_B];
+/* Every poster in one list, so "today" rotates through all of them. */
+const ALL = [];
+TOPICS.forEach(t => t.posters.forEach((p, i) => ALL.push({t, i})));
+const START = Date.UTC(2026, 9, 25);
+const now = new Date();
+const dayIndex = Math.floor((Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - START) / 86400000);
+const TODAY = now.toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+$("todayLine").textContent = TODAY;
+
+let pos = mod(dayIndex, ALL.length);   // index into ALL
+let current = null;                    // poster object on screen
+let lastBlob = null;
+
+/* ---------- Canvas poster ---------- */
+const cv = $("cv"), ctx = cv.getContext("2d");
+const W = 1080, H = 1350;
+const C = {yellow:"#FFCD00", black:"#141613", green:"#00843D", white:"#FFFFFF", grey:"#3A3F38"};
+
+function fitText(text, weight, family, maxSize, minSize, width, height, lh, maxLines){
+  for (let size = maxSize; size >= minSize; size -= 2){
+    ctx.font = `${weight} ${size}px ${family}`;
+    const lines = wrap(text, width);
+    if (lines.length <= maxLines && lines.length * size * lh <= height) return {size, lines};
+  }
+  ctx.font = `${weight} ${minSize}px ${family}`;
+  return {size:minSize, lines:wrap(text, width).slice(0, maxLines)};
+}
+function wrap(text, width){
+  const words = String(text).split(/\s+/).filter(Boolean), lines = [];
+  let line = "";
+  for (const w of words){
+    const test = line ? line + " " + w : w;
+    if (ctx.measureText(test).width <= width || !line) line = test; else { lines.push(line); line = w; }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+function roundRect(x, y, w, h, r){
+  ctx.beginPath(); ctx.moveTo(x+r, y); ctx.arcTo(x+w, y, x+w, y+h, r); ctx.arcTo(x+w, y+h, x, y+h, r);
+  ctx.arcTo(x, y+h, x, y, r); ctx.arcTo(x, y, x+w, y, r); ctx.closePath();
+}
+function hazard(y, h){
+  ctx.save(); ctx.beginPath(); ctx.rect(0, y, W, h); ctx.clip();
+  ctx.fillStyle = C.yellow; ctx.fillRect(0, y, W, h);
+  ctx.fillStyle = C.black;
+  for (let x = -h; x < W + h; x += 56){ ctx.beginPath(); ctx.moveTo(x, y+h); ctx.lineTo(x+28, y+h); ctx.lineTo(x+28+h, y); ctx.lineTo(x+h, y); ctx.closePath(); ctx.fill(); }
+  ctx.restore();
+}
+function drawIcon(name, cx, cy, r){
+  ctx.save();
+  ctx.fillStyle = C.white; ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.fill();
+  ctx.lineWidth = 14; ctx.strokeStyle = C.black; ctx.stroke();
+  ctx.fillStyle = C.black; ctx.strokeStyle = C.black; ctx.lineCap = "round"; ctx.lineJoin = "round";
+  const s = r / 100;
+  ctx.translate(cx, cy); ctx.scale(s, s);
+  switch (name){
+    case "hardhat":
+      ctx.beginPath(); ctx.moveTo(-52, 12); ctx.bezierCurveTo(-52, -52, 52, -52, 52, 12); ctx.closePath(); ctx.fill();
+      roundRect(-68, 12, 136, 18, 6); ctx.fill();
+      ctx.fillStyle = C.white; roundRect(-8, -42, 16, 46, 6); ctx.fill(); break;
+    case "beacon":
+      ctx.beginPath(); ctx.moveTo(-30, 30); ctx.lineTo(-30, -8); ctx.bezierCurveTo(-30, -48, 30, -48, 30, -8); ctx.lineTo(30, 30); ctx.closePath(); ctx.fill();
+      roundRect(-44, 30, 88, 18, 4); ctx.fill();
+      ctx.lineWidth = 9;
+      [[-56,-30,-72,-44],[56,-30,72,-44],[0,-58,0,-78],[-62,4,-80,4],[62,4,80,4]].forEach(([a,b,c,d])=>{ctx.beginPath();ctx.moveTo(a,b);ctx.lineTo(c,d);ctx.stroke();}); break;
+    case "warning":
+      ctx.lineWidth = 12; ctx.beginPath(); ctx.moveTo(0, -60); ctx.lineTo(62, 50); ctx.lineTo(-62, 50); ctx.closePath(); ctx.stroke();
+      roundRect(-6, -24, 12, 44, 5); ctx.fill(); ctx.beginPath(); ctx.arc(0, 34, 7, 0, Math.PI*2); ctx.fill(); break;
+    case "clipboard":
+      ctx.lineWidth = 10; roundRect(-42, -52, 84, 108, 8); ctx.stroke();
+      roundRect(-20, -64, 40, 24, 6); ctx.fill();
+      ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(-24,-12); ctx.lineTo(-12,0); ctx.lineTo(8,-22); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-24,26); ctx.lineTo(24,26); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(18,-6); ctx.lineTo(24,-6); ctx.stroke(); break;
+    case "forklift":
+      roundRect(-58, -10, 70, 44, 6); ctx.fill();
+      ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(-46,-10); ctx.lineTo(-38,-44); ctx.lineTo(-6,-44); ctx.lineTo(4,-10); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(24,-58); ctx.lineTo(24,40); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(24,40); ctx.lineTo(66,40); ctx.stroke();
+      ctx.fillStyle = C.black; [[-40,42],[2,42]].forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);ctx.fill();});
+      ctx.fillStyle = C.white; [[-40,42],[2,42]].forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();}); break;
+    case "person":
+      ctx.beginPath(); ctx.arc(0, -40, 20, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(-36, 58); ctx.lineTo(-36, 8); ctx.bezierCurveTo(-36, -14, 36, -14, 36, 8); ctx.lineTo(36, 58); ctx.closePath(); ctx.fill(); break;
+    default: /* shield */
+      ctx.beginPath(); ctx.moveTo(0,-64); ctx.lineTo(54,-42); ctx.lineTo(50,10); ctx.bezierCurveTo(46,40,22,58,0,68);
+      ctx.bezierCurveTo(-22,58,-46,40,-50,10); ctx.lineTo(-54,-42); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = C.white; ctx.lineWidth = 13; ctx.beginPath(); ctx.moveTo(-22,2); ctx.lineTo(-4,20); ctx.lineTo(26,-16); ctx.stroke();
+  }
+  ctx.restore();
+}
+function check(x, y, s){
+  ctx.fillStyle = C.green; roundRect(x, y, s, s, 8); ctx.fill();
+  ctx.strokeStyle = C.white; ctx.lineWidth = 8; ctx.lineCap = "round"; ctx.lineJoin = "round";
+  ctx.beginPath(); ctx.moveTo(x+s*.26, y+s*.52); ctx.lineTo(x+s*.43, y+s*.7); ctx.lineTo(x+s*.76, y+s*.32); ctx.stroke();
+}
+
+function render(p){
+  const DISP = '"Barlow Condensed", "Arial Narrow", Impact, sans-serif';
+  const BODY = '"Atkinson Hyperlegible", Arial, sans-serif';
+  ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = C.yellow; ctx.fillRect(0, 0, W, H);
+  // top band
+  ctx.fillStyle = C.black; ctx.fillRect(0, 0, W, 150);
+  ctx.fillStyle = C.yellow; ctx.textAlign = "left"; ctx.font = `800 62px ${DISP}`;
+  ctx.fillText("DAILY SAFETY MESSAGE", 56, 74);
+  ctx.fillStyle = C.white; ctx.font = `600 34px ${DISP}`;
+  ctx.fillText(p.date.toUpperCase(), 58, 120);
+  hazard(150, 34);
+  // icon
+  drawIcon(p.icon, W/2, 318, 108);
+  // main message
+  ctx.fillStyle = C.black; ctx.textAlign = "center";
+  const m = fitText(p.main.toUpperCase(), 800, DISP, 118, 60, 960, 250, 0.98, 3);
+  ctx.font = `800 ${m.size}px ${DISP}`;
+  const mTop = 452 + (250 - m.lines.length * m.size * 0.98) / 2;
+  m.lines.forEach((l, i) => ctx.fillText(l, W/2, mTop + m.size * 0.86 + i * m.size * 0.98));
+  // points panel
+  const px = 56, py = 724, pw = W - 112, ph = 372;
+  ctx.fillStyle = C.white; roundRect(px, py, pw, ph, 14); ctx.fill();
+  const rowH = ph / 3;
+  p.points.slice(0,3).forEach((t, i) => {
+    const ry = py + i * rowH;
+    if (i) { ctx.fillStyle = "#E3E5E0"; ctx.fillRect(px + 30, ry, pw - 60, 2); }
+    check(px + 30, ry + (rowH - 70)/2, 70);
+    ctx.fillStyle = C.black; ctx.textAlign = "left";
+    const f = fitText(t, 700, BODY, 44, 28, pw - 150, rowH - 24, 1.15, 2);
+    ctx.font = `700 ${f.size}px ${BODY}`;
+    const tTop = ry + (rowH - f.lines.length * f.size * 1.15) / 2;
+    f.lines.forEach((l, j) => ctx.fillText(l, px + 124, tTop + f.size * 0.9 + j * f.size * 1.15));
+  });
+  // reminder
+  ctx.fillStyle = C.black; ctx.textAlign = "center";
+  const r = fitText(p.reminder, 400, BODY, 38, 26, 940, 116, 1.2, 3);
+  ctx.font = `italic 400 ${r.size}px ${BODY}`;
+  const rTop = 1110 + (116 - r.lines.length * r.size * 1.2) / 2;
+  r.lines.forEach((l, i) => ctx.fillText(l, W/2, rTop + r.size * 0.9 + i * r.size * 1.2));
+  // footer
+  ctx.fillStyle = C.green; ctx.fillRect(0, H - 108, W, 108);
+  ctx.fillStyle = C.white; ctx.textAlign = "left"; ctx.font = `800 48px ${DISP}`;
+  ctx.fillText("ABL SAFETY · SAFETY FIRST", 56, H - 38);
+  ctx.textAlign = "right"; ctx.font = `600 28px ${DISP}`;
+  ctx.fillText("ACCRA BREWERY PLC", W - 56, H - 42);
+  return cv.toDataURL("image/png");
+}
+
+
+
+/*DECK-START*/
+const KP = [10,6,3,1,0.5,0.1], KF = [10,6,3,2,1,0.5], KI = [40,15,7,3,1];
+const KP_L = {10:"To be expected",6:"Very well possible",3:"Rare",1:"Improbable but possible",0.5:"Conceivable but improbable",0.1:"Almost inconceivable"};
+const KF_L = {10:"Continuously",6:"Daily",3:"Weekly",2:"Monthly",1:"Yearly",0.5:"Less than yearly"};
+const KI_L = {40:"Several deaths",15:"One death",7:"Disability",3:"Injury with absence",1:"Injury without absence"};
+function band(r){ return r > 400 ? "Very high - consider stopping" : r >= 200 ? "High - direct action" : r >= 70 ? "Substantial - correction required" : r >= 20 ? "Possible - attention" : "Light - acceptable"; }
+function nearest(v, set){ v = Number(v); return set.reduce((a, b) => Math.abs(b - v) < Math.abs(a - v) ? b : a, set[0]); }
+function arr(x, n, max){ return (Array.isArray(x) ? x : []).map(s => String(s || "").replace(/\s+/g, " ").trim().slice(0, max || 160)).filter(Boolean).slice(0, n); }
+
+function buildDeck(PptxGenJS, kind, d, poster, posterUrl){
+  const full = kind === "full";
+  const Y = "FFCD00", K = "141613", G = "00843D", R = "B3261E", GR = "5B615A", LG = "EEF0EA", WH = "FFFFFF";
+  const HF = "Arial Black", BF = "Arial";
+  const pptx = new PptxGenJS();
+  pptx.layout = "LAYOUT_WIDE";
+  pptx.author = "ABL Safety"; pptx.company = "Accra Brewery PLC";
+  pptx.title = `${full ? "Training session" : "Toolbox talk"}: ${d.title}`;
+  const kicker = `${full ? "TRAINING SESSION" : "TOOLBOX TALK"}  ·  ${poster.topic.toUpperCase()}`;
+  let n = 0;
+  const notes = (s, t) => { if (t) s.addNotes(String(t)); };
+  function base(heading){
+    const s = pptx.addSlide(); n++;
+    s.background = {color: WH};
+    s.addShape(pptx.ShapeType.rect, {x:0, y:0, w:0.22, h:7.5, fill:{color:Y}, line:{color:Y}});
+    s.addText(kicker, {x:0.7, y:0.35, w:11.5, h:0.35, fontFace:BF, fontSize:12, bold:true, color:GR, charSpacing:2});
+    s.addText(heading, {x:0.7, y:0.7, w:11.9, h:1.0, fontFace:HF, fontSize:30, color:K, valign:"top", fit:"shrink"});
+    s.addShape(pptx.ShapeType.line, {x:0.7, y:6.85, w:11.9, h:0, line:{color:"D3D7D0", width:1}});
+    s.addText("ABL Safety · Safety First", {x:0.7, y:6.9, w:6, h:0.35, fontFace:BF, fontSize:10, color:GR});
+    s.addText(String(n), {x:11.6, y:6.9, w:1, h:0.35, fontFace:BF, fontSize:10, color:GR, align:"right"});
+    return s;
+  }
+  function bullets(heading, items, note){
+    const s = base(heading);
+    s.addText(items.map(t => ({text:t, options:{bullet:{indent:22}, breakLine:true}})),
+      {x:0.8, y:1.9, w:11.6, h:4.7, fontFace:BF, fontSize:22, color:K, valign:"top", paraSpaceAfter:14, fit:"shrink"});
+    notes(s, note); return s;
+  }
+
+  // 1. Title
+  { const s = pptx.addSlide(); n++;
+    s.background = {color: Y};
+    s.addShape(pptx.ShapeType.rect, {x:0, y:0, w:13.33, h:0.9, fill:{color:K}, line:{color:K}});
+    s.addText(full ? "TRAINING SESSION" : "TOOLBOX TALK", {x:0.6, y:0.15, w:7, h:0.6, fontFace:HF, fontSize:22, color:Y});
+    s.addText(poster.date, {x:0.6, y:1.3, w:7, h:0.4, fontFace:BF, fontSize:16, bold:true, color:K});
+    s.addText(d.title, {x:0.6, y:1.8, w:6.9, h:2.6, fontFace:HF, fontSize:40, color:K, valign:"top", fit:"shrink"});
+    s.addText(full ? "About 30 minutes · discussion and quiz" : "About 5 minutes · read aloud at the start of the shift",
+      {x:0.6, y:4.6, w:6.9, h:0.5, fontFace:BF, fontSize:16, color:K});
+    s.addShape(pptx.ShapeType.rect, {x:0, y:6.6, w:13.33, h:0.9, fill:{color:G}, line:{color:G}});
+    s.addText("ABL SAFETY · SAFETY FIRST", {x:0.6, y:6.75, w:7, h:0.6, fontFace:HF, fontSize:18, color:WH});
+    if (posterUrl) s.addImage({data:posterUrl, x:8.3, y:1.15, w:4.24, h:5.3});
+    notes(s, d.notes.intro || `Today's topic: ${d.title}. Source: ${poster.source}.`);
+  }
+  // 2. Objectives (full)
+  if (full && d.objectives.length) bullets("By the end of this session you will be able to", d.objectives, d.notes.objectives);
+  // 3. Why it matters
+  bullets("Why this matters", d.why, d.notes.why);
+  // 4. Hazard on our floor (full)
+  if (full && d.hazard.length) bullets("What it looks like on our floor", d.hazard, d.notes.hazard);
+  // 5. Key actions
+  { const s = base("What we do - every time");
+    d.actions.forEach((a, i) => {
+      const y = 1.95 + i * 1.55;
+      s.addShape(pptx.ShapeType.rect, {x:0.8, y, w:0.8, h:0.8, fill:{color:G}, line:{color:G}});
+      s.addText("✓", {x:0.8, y, w:0.8, h:0.8, fontFace:BF, fontSize:30, bold:true, color:WH, align:"center", valign:"middle"});
+      s.addText([{text:a.action, options:{bold:true, fontSize:22, breakLine:true}}, {text:a.how || "", options:{fontSize:16, color:GR}}],
+        {x:1.85, y:y - 0.1, w:10.6, h:1.3, fontFace:BF, color:K, valign:"top", fit:"shrink"});
+    });
+    notes(s, d.notes.actions);
+  }
+  // 6. Do / Don't
+  { const s = base("Do and don't");
+    [[d.do, "DO", G, 0.8], [d.dont, "DON'T", R, 6.85]].forEach(([items, label, col, x]) => {
+      s.addShape(pptx.ShapeType.rect, {x, y:1.9, w:5.75, h:0.6, fill:{color:col}, line:{color:col}});
+      s.addText(label, {x:x + 0.2, y:1.9, w:5.4, h:0.6, fontFace:HF, fontSize:18, color:WH, valign:"middle"});
+      s.addShape(pptx.ShapeType.rect, {x, y:2.5, w:5.75, h:4.1, fill:{color:LG}, line:{color:LG}});
+      s.addText(items.map(t => ({text:t, options:{bullet:{indent:20}, breakLine:true}})),
+        {x:x + 0.15, y:2.65, w:5.45, h:3.8, fontFace:BF, fontSize:18, color:K, valign:"top", paraSpaceAfter:10, fit:"shrink"});
+    });
+    notes(s, d.notes.dodont);
+  }
+  // 7. Kinney example (full)
+  if (full && d.kinney){
+    const k = d.kinney, rb = k.before.p * k.before.f * k.before.i, ra = k.after.p * k.after.f * k.after.i;
+    const s = base("Risk check: " + k.task);
+    const hdr = {bold:true, color:WH, fill:{color:K}, fontFace:BF, fontSize:14};
+    const cell = {fontFace:BF, fontSize:14, color:K};
+    const row = (lab, v, L) => [{text:lab, options:{...cell, bold:true}}, {text:String(v.before), options:cell}, {text:L[v.before], options:{...cell, color:GR}}, {text:String(v.after), options:cell}, {text:L[v.after], options:{...cell, color:GR}}];
+    s.addTable([
+      [{text:"", options:hdr}, {text:"Before", options:hdr}, {text:"", options:hdr}, {text:"After controls", options:hdr}, {text:"", options:hdr}],
+      row("Probability", {before:k.before.p, after:k.after.p}, KP_L),
+      row("Frequency", {before:k.before.f, after:k.after.f}, KF_L),
+      row("Impact", {before:k.before.i, after:k.after.i}, KI_L),
+      [{text:"Risk = P x F x I", options:{...cell, bold:true}}, {text:String(+rb.toFixed(1)), options:{...cell, bold:true}}, {text:band(rb), options:{...cell, bold:true, color:rb >= 70 ? R : G}},
+       {text:String(+ra.toFixed(1)), options:{...cell, bold:true}}, {text:band(ra), options:{...cell, bold:true, color:ra >= 70 ? R : G}}]
+    ], {x:0.8, y:1.85, w:11.7, colW:[2.2, 1.1, 3.3, 1.5, 3.6], border:{type:"solid", color:"D3D7D0", pt:1}, rowH:0.5});
+    s.addText([{text:"Controls: ", options:{bold:true}}, {text:k.controls}], {x:0.8, y:4.75, w:11.7, h:1.0, fontFace:BF, fontSize:16, color:K, valign:"top", fit:"shrink"});
+    s.addText("Kinney method (VPO.SAFE.2.02.02): action is needed from a score of 70.", {x:0.8, y:5.9, w:11.7, h:0.4, fontFace:BF, fontSize:12, italic:true, color:GR});
+    notes(s, d.notes.kinney);
+  }
+  // 8. If it goes wrong (full)
+  if (full && d.emergency.length) bullets("If something goes wrong", d.emergency, d.notes.emergency);
+  // 9. Quiz (full)
+  if (full && d.quiz.length){
+    d.quiz.forEach((q, i) => {
+      const s = base(`Quiz ${i + 1} of ${d.quiz.length}`);
+      s.addText(q.q, {x:0.8, y:1.75, w:11.7, h:1.1, fontFace:BF, fontSize:24, bold:true, color:K, valign:"top", fit:"shrink"});
+      q.options.forEach((o, j) => {
+        const x = 0.8 + (j % 2) * 5.95, y = 3.05 + Math.floor(j / 2) * 1.75;
+        s.addShape(pptx.ShapeType.rect, {x, y, w:5.75, h:1.5, fill:{color:LG}, line:{color:"D3D7D0"}});
+        s.addText([{text:"ABCD"[j] + "   ", options:{bold:true, color:G}}, {text:o}], {x:x + 0.2, y, w:5.4, h:1.5, fontFace:BF, fontSize:18, color:K, valign:"middle", fit:"shrink"});
+      });
+      notes(s, `Give the team a moment to answer. Correct answer: ${"ABCD"[q.answer]} - ${q.options[q.answer]}.`);
+    });
+    bullets("Quiz answers", d.quiz.map((q, i) => `${i + 1}. ${"ABCD"[q.answer]} - ${q.options[q.answer]}`), "Go through any answer the team got wrong.");
+  }
+  // 10. Close
+  { const s = pptx.addSlide(); n++;
+    s.background = {color: K};
+    s.addText("LET'S TALK", {x:0.8, y:0.7, w:11, h:0.5, fontFace:BF, fontSize:16, bold:true, color:Y, charSpacing:3});
+    s.addText(d.discussion, {x:0.8, y:1.3, w:11.7, h:2.8, fontFace:HF, fontSize:34, color:WH, valign:"top", fit:"shrink"});
+    s.addShape(pptx.ShapeType.rect, {x:0.8, y:4.6, w:11.7, h:1.5, fill:{color:Y}, line:{color:Y}});
+    s.addText([{text:"REMEMBER  ", options:{bold:true, fontSize:14, charSpacing:2}}, {text:poster.main.toUpperCase(), options:{fontFace:HF, fontSize:26}}],
+      {x:1.1, y:4.6, w:11.2, h:1.5, fontFace:BF, color:K, valign:"middle", fit:"shrink"});
+    s.addText(`Source: ${poster.source}`, {x:0.8, y:6.6, w:11.7, h:0.4, fontFace:BF, fontSize:11, color:"A3AA9F"});
+    notes(s, d.notes.close || "Take two or three answers. Agree one thing the team will do differently this shift.");
+  }
+  return pptx;
+}
+
+function normaliseDeck(raw, poster, full){
+  const d = {
+    title: String(raw?.title || poster.main).trim().slice(0, 90),
+    objectives: arr(raw?.objectives, 4),
+    why: arr(raw?.why, 4),
+    hazard: arr(raw?.hazard, 5),
+    actions: (Array.isArray(raw?.actions) ? raw.actions : []).slice(0, 3).map(a => ({action:String(a?.action || "").trim().slice(0, 90), how:String(a?.how || "").trim().slice(0, 200)})).filter(a => a.action),
+    do: arr(raw?.do, 4, 110), dont: arr(raw?.dont, 4, 110),
+    emergency: arr(raw?.emergency, 5),
+    quiz: (Array.isArray(raw?.quiz) ? raw.quiz : []).map(q => ({q:String(q?.q || "").trim().slice(0, 200), options:arr(q?.options, 4, 120), answer:Number(q?.answer)}))
+      .filter(q => q.q && q.options.length === 4 && q.answer >= 0 && q.answer <= 3).slice(0, 3),
+    discussion: String(raw?.discussion || "What makes this hard to do on our shift, and what would help?").trim().slice(0, 200),
+    notes: {}, kinney: null
+  };
+  const nt = raw?.notes || {};
+  ["intro","objectives","why","hazard","actions","dodont","kinney","emergency","close"].forEach(k => { if (nt[k]) d.notes[k] = String(nt[k]).slice(0, 1200); });
+  const k = raw?.kinney;
+  if (full && k && k.task && k.before && k.after){
+    d.kinney = {task:String(k.task).slice(0, 80), controls:String(k.controls || "").slice(0, 300),
+      before:{p:nearest(k.before.p, KP), f:nearest(k.before.f, KF), i:nearest(k.before.i, KI)},
+      after:{p:nearest(k.after.p, KP), f:nearest(k.after.f, KF), i:nearest(k.after.i, KI)}};
+  }
+  if (d.actions.length < 3) d.actions = poster.points.map(p => ({action:p, how:""}));
+  if (!d.why.length) d.why = [poster.reminder];
+  if (!d.do.length) d.do = poster.points.slice();
+  if (!d.dont.length) d.dont = ["Skip the check because you are in a hurry", "Assume someone else has dealt with it", "Carry on when something feels unsafe"];
+  return d;
+}
+/*DECK-END*/
+
+/* ---------- Poster state ---------- */
+const editKey = (t, i) => `abl-edit-${t.id}-${i}`;
+function posterAt(k){
+  const {t, i} = ALL[k], base = t.posters[i], ed = store.get(editKey(t, i), null);
+  const p = {...base, ...(ed || {})};
+  return {topic:t.name, req:t.req, topicId:t.id, idx:i, source:t.src, date:TODAY, edited:!!ed,
+    icon:p.icon, main:p.main, points:p.points.slice(0, 3), reminder:p.reminder};
+}
+function waText(p){
+  return `*DAILY SAFETY MESSAGE*\n${p.date}\n\n*${p.main.toUpperCase()}*\n\n✅ ${p.points[0]}\n✅ ${p.points[1]}\n✅ ${p.points[2]}\n\n_${p.reminder}_\n\nABL Safety - Safety First`;
+}
+function show(k, fill = true){
+  pos = mod(k, ALL.length);
+  const p = current = posterAt(pos);
+  $("posterImg").src = render(p);
+  $("posterImg").alt = `Safety poster: ${p.main}. ${p.points.join(". ")}. ${p.reminder}`;
+  cv.toBlob(b => { lastBlob = b; }, "image/png");
+  const isToday = pos === mod(dayIndex, ALL.length);
+  $("posterHead").textContent = isToday ? "Today's poster" : "Poster";
+  const m = $("meta"); m.textContent = "";
+  const a = document.createElement("span"); a.append("Topic: "); const b = document.createElement("b"); b.textContent = p.topic; a.append(b); m.append(a);
+  const s = document.createElement("span"); s.textContent = "Source: " + p.source; m.append(s);
+  if (p.edited){ const e = document.createElement("span"); e.textContent = "Edited by you"; m.append(e); }
+  $("shareStatus").textContent = "";
+  $("topicSel").value = p.topicId;
+  const t = TOPICS.find(x => x.id === p.topicId);
+  $("topicHint").textContent = (t.req === "General" ? "Plant-wide message." : `Self-assessment gap ${t.req}.`) + (t.posters.length > 1 ? ` ${t.posters.length} posters in this topic - use Previous and Next.` : "");
+  $("deckFor").textContent = ""; $("deckFor").append("Topic: "); const db = document.createElement("b"); db.textContent = t.name + (t.req !== "General" ? ` (${t.req})` : ""); $("deckFor").append(db);
+  $("deckStatus").textContent = "";
+  if (fill) fillEdit(p);
+}
+function fillEdit(p){
+  $("fMain").value = p.main; $("fP1").value = p.points[0]; $("fP2").value = p.points[1]; $("fP3").value = p.points[2];
+  $("fRem").value = p.reminder; $("fIcon").value = p.icon;
+}
+function saveEdit(){
+  const {t, i} = ALL[pos];
+  const ed = {main:$("fMain").value.trim() || t.posters[i].main,
+    points:[$("fP1").value, $("fP2").value, $("fP3").value].map((v, j) => v.trim() || t.posters[i].points[j]),
+    reminder:$("fRem").value.trim() || t.posters[i].reminder, icon:$("fIcon").value};
+  store.set(editKey(t, i), ed);
+  show(pos, false);
+}
+
+/* ---------- Share and save ---------- */
+async function shareFile(file, text, statusEl, okMsg){
+  try {
+    if (navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], text});
+      statusEl.className = "status"; statusEl.textContent = okMsg; return;
+    }
+  } catch (e) {
+    if (e && e.name === "AbortError"){ statusEl.textContent = ""; return; }
+  }
+  const url = URL.createObjectURL(file);
+  const a = document.createElement("a"); a.href = url; a.download = file.name; document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  statusEl.className = "status"; statusEl.textContent = "Downloaded. Find it in your Downloads to share it.";
+}
+async function sharePoster(){
+  const blob = lastBlob || await new Promise(r => cv.toBlob(r, "image/png"));
+  const file = new File([blob], `ABL-safety-${current.topicId}.png`, {type:"image/png"});
+  await shareFile(file, waText(current), $("shareStatus"), "Shared.");
+}
+async function copyText(){
+  const st = $("shareStatus"); st.className = "status";
+  try { await navigator.clipboard.writeText(waText(current)); st.textContent = "Text copied. Paste it into WhatsApp."; }
+  catch { st.textContent = "Couldn't copy on this phone. Use Share poster instead."; }
+}
+
+/* ---------- Learning materials ---------- */
+const NOTES = {
+  objectives:"Read the objectives. Tell the team there is a short quiz at the end.",
+  why:"Read each reason and ask if anyone has seen this happen at ABL.",
+  hazard:"Ask the team where they see these hazards on their own line or area.",
+  actions:"Go through each action. Ask one person to show or explain how they do it on the job.",
+  dodont:"Ask the team to add one more do and one more don't from their own experience.",
+  kinney:"Walk through the scores: Probability x Frequency x Impact. Show how the controls bring the score below 70.",
+  emergency:"Check everyone knows the emergency number and their assembly point.",
+  close:"Take two or three answers. Agree one thing the team will do differently this shift."
+};
+function deckFor(t, p){
+  const d = t.deck;
+  return {
+    title:d.title, objectives:d.objectives, why:d.why, hazard:d.hazard,
+    actions:d.actions.map(([action, how]) => ({action, how})), do:d.do, dont:d.dont,
+    kinney: d.kinney ? {task:d.kinney.task, controls:d.kinney.controls,
+      before:{p:d.kinney.b[0], f:d.kinney.b[1], i:d.kinney.b[2]}, after:{p:d.kinney.a[0], f:d.kinney.a[1], i:d.kinney.a[2]}} : null,
+    emergency:d.emergency, quiz:d.quiz.map(([q, options, answer]) => ({q, options, answer})),
+    discussion:d.discussion,
+    notes:{intro:`Today's topic: ${d.title}. Tell the team why we are talking about it and how long it will take.`, ...NOTES}
+  };
+}
+async function makeDeck(kind){
+  const st = $("deckStatus"), full = kind === "full";
+  const btns = [$("deckShort"), $("deckFull")];
+  if (!window.PptxGenJS){ st.className = "status err"; st.textContent = "The slide builder didn't load. Close and reopen the app."; return; }
+  btns.forEach(b => b.disabled = true); st.className = "status"; st.textContent = "Building the slides…";
+  try {
+    const t = TOPICS.find(x => x.id === current.topicId);
+    const posterUrl = render(current);
+    const pptx = buildDeck(window.PptxGenJS, kind, deckFor(t, current), current, posterUrl);
+    const blob = await pptx.write({outputType:"blob"});
+    const name = `ABL ${full ? "Training" : "Toolbox talk"} - ${t.name.replace(/[^0-9A-Za-z ]+/g, "")}.pptx`;
+    const file = new File([blob], name, {type:"application/vnd.openxmlformats-officedocument.presentationml.presentation"});
+    st.textContent = "Ready.";
+    await shareFile(file, `${full ? "Training session" : "Toolbox talk"}: ${t.name}`, st, "Shared.");
+  } catch (e) {
+    st.className = "status err"; st.textContent = "The slides couldn't be built. Try again.";
+  } finally { btns.forEach(b => b.disabled = false); render(current); }
+}
+
+/* ---------- Install prompt ---------- */
+let deferred = null;
+const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); deferred = e; if (!standalone) $("installBar").hidden = false; });
+$("installBtn").onclick = async () => {
+  if (deferred){ deferred.prompt(); await deferred.userChoice.catch(() => {}); deferred = null; $("installBar").hidden = true; }
+};
+if (!standalone && /iphone|ipad|ipod/i.test(navigator.userAgent)){
+  $("installBar").hidden = false; $("installBtn").hidden = true;
+  $("installText").textContent = "To install: tap Share, then “Add to Home Screen”.";
+}
+
+/* ---------- Boot ---------- */
+async function boot(){
+  const sel = $("topicSel");
+  TOPICS.forEach(t => { const o = document.createElement("option"); o.value = t.id; o.textContent = t.req === "General" ? t.name : `${t.name} (${t.req})`; sel.append(o); });
+  sel.onchange = () => show(ALL.findIndex(x => x.t.id === sel.value));
+  try { await Promise.all([
+    document.fonts.load('800 80px "Barlow Condensed"'), document.fonts.load('600 30px "Barlow Condensed"'),
+    document.fonts.load('700 40px "Atkinson Hyperlegible"'), document.fonts.load('italic 400 30px "Atkinson Hyperlegible"')]); } catch {}
+  show(pos);
+  $("prevBtn").onclick = () => show(pos - 1);
+  $("nextBtn").onclick = () => show(pos + 1);
+  $("todayBtn").onclick = () => { show(dayIndex); scrollTo({top:0, behavior:"smooth"}); };
+  $("shareBtn").onclick = sharePoster;
+  $("copyBtn").onclick = copyText;
+  ["fMain","fP1","fP2","fP3","fRem"].forEach(id => $(id).addEventListener("input", saveEdit));
+  $("fIcon").onchange = saveEdit;
+  $("resetBtn").onclick = () => { const {t, i} = ALL[pos]; try { localStorage.removeItem(editKey(t, i)); } catch {} show(pos); };
+  $("deckShort").onclick = () => makeDeck("short");
+  $("deckFull").onclick = () => makeDeck("full");
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+}
+boot();
+})();
+</script>
+</body>
+</html>
